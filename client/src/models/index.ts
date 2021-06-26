@@ -1,9 +1,9 @@
 export enum UploadingStatus {
-  UPLOADNG_PENDING,
-  UPLOAD_ONGOING,
-  UPLOAD_SUCCEEDED,
-  UPLOAD_FAILED,
-  UPLOAD_CANCELLED,
+  UPLOADNG_PENDING = "Pending",
+  UPLOAD_ONGOING = "Uploading",
+  UPLOAD_SUCCEEDED = "Succeeded",
+  UPLOAD_FAILED = "Failed",
+  UPLOAD_CANCELLED = "Cancelled",
 }
 
 export interface NewFile {

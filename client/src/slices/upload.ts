@@ -29,11 +29,18 @@ const UploadSlice = createSlice({
     cancelUploadingFile: (state, action: PayloadAction<string>) => {
       const file = state.newFiles.find((file) => file.id === action.payload);
 
-      if (file) {
+      if (file && file.status === UploadingStatus.UPLOAD_ONGOING) {
         file.status = UploadingStatus.UPLOAD_CANCELLED;
       }
     },
     cancelUploadingAllFiles: (state) => {
+      state.newFiles.forEach((file) => {
+        if (file.status === UploadingStatus.UPLOAD_ONGOING) {
+          file.status = UploadingStatus.UPLOAD_CANCELLED;
+        }
+      });
+    },
+    reset: (state) => {
       state.newFiles = [];
     },
   },
