@@ -1,8 +1,14 @@
 import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
+
+import { actions } from "slices/upload";
+import { NewFile, UploadingStatus } from "models";
 
 import style from "./style";
 
 const Upload: React.FC = () => {
+  const dispatch = useDispatch();
   const fileInputRef = useRef(null);
 
   const handleChooseFiles = (e) => {
@@ -12,7 +18,16 @@ const Upload: React.FC = () => {
 
     const files = Array.from(e.target.files) as File[];
 
-    console.log("Files", files);
+    const newFiles: NewFile[] = files.map((file) => ({
+      id: uuid(),
+      name: file.name,
+      objectUrl: window.URL.createObjectURL(file),
+      status: UploadingStatus.UPLOADNG_PENDING,
+    }));
+
+    console.log("Files", newFiles);
+
+    dispatch(actions.uploadFiles(newFiles));
   };
 
   return (
