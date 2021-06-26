@@ -3,5 +3,6 @@
   "editor.formatOnSave": true,
   "prettier.eslintIntegration": true,
   "prettier.parser": "typescript",
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "editor.tabSize": 2
 }
